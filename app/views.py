@@ -23,3 +23,8 @@ def index(request):
             t.save()
             g.toques.add(t)
         return HttpResponse(json_data)
+		
+def get_aluno(request):
+	jogo = Jogo.objects.latest('aluno')
+    print jogo.aluno
+	return HttpResponse(jogo.aluno)
