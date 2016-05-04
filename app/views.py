@@ -25,6 +25,6 @@ def index(request):
         return HttpResponse(json_data)
 		
 def get_aluno(request):
-	jogo = Jogo.objects.latest('aluno')
+    jogo = Jogo.objects.latest('aluno')
     print jogo.aluno
-	return HttpResponse(jogo.aluno)
+    return HttpResponse(jogo.aluno)
