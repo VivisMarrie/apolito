@@ -12,6 +12,7 @@ def index(request):
         g = Jogo()
         g.fase = json_data["fase"]
         g.tempo = json_data["tempo"]
+        g.aluno = json_data["aluno"]
         g.tentativas = json_data["tentativas"]
         g.frustrado = json_data["frustrado"]
         g.save()
