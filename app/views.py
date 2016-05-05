@@ -21,6 +21,7 @@ def index(request):
             t.x = i["x"]
             t.y = i["y"]
             t.t = i["t"]
+            t.acao = i["acao"]
             t.save()
             g.toques.add(t)
         return HttpResponse(json_data)
