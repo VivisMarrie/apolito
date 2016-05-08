@@ -1,0 +1,20 @@
+@relation jogos
+@attribute fase integer
+@attribute aluno integer
+@attribute frustrado {True, False}
+@attribute tentativas integer
+@attribute tempo integer
+@data
+1,1,False,1,1020
+2,1,False,1,610
+3,1,False,1,1504
+4,1,False,1,1071
+5,1,False,1,409
+6,1,False,1,753
+0,1,False,0,158
+1,2,False,3,6865
+2,2,False,1,2570
+3,2,False,1,1611
+4,2,False,1,1942
+5,2,False,3,11267
+6,2,False,2,6957
