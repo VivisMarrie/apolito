@@ -1,4 +1,4 @@
-import json
+import json, arff
 from app.models import Toques, Jogo
 from django.http import HttpResponse, request
 from django.views.decorators.csrf import csrf_exempt
@@ -30,3 +30,13 @@ def get_aluno(request):
     jogo = Jogo.objects.latest('aluno')
     print jogo.aluno
     return HttpResponse(jogo.aluno)
+    
+def generate_data(request):
+    jogos = Jogo.objects.all()
+    jsn = []
+    for j in jogos:
+        print j.fase
+        jsn.append([j.fase, j.aluno, j.frustrado, j.tentativas, j.tempo])
+    print jsn
+    arff.dump('result.arff', jsn, relation="jogos", names=['fase', 'aluno', 'frustrado', 'tentativas', 'tempo'])
+    return HttpResponse(jsn)
