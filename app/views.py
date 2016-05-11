@@ -32,11 +32,37 @@ def get_aluno(request):
     return HttpResponse(jogo.aluno)
     
 def generate_data(request):
-    jogos = Jogo.objects.all()
+    generate_arquivo(1)
+    generate_arquivo(2)
+    generate_arquivo(3)
+    generate_arquivo(4)
+    generate_arquivo(5)
+    generate_arquivo(6)
+
+    return HttpResponse("Gerado ARFFs")
+
+
+def generate_arquivo(fase):
+    jogo_fase = Jogo.objects.all().filter(fase=fase)
     jsn = []
-    for j in jogos:
-        print j.fase
-        jsn.append([j.fase, j.aluno, j.frustrado, j.tentativas, j.tempo])
-    print jsn
-    arff.dump('result.arff', jsn, relation="jogos", names=['fase', 'aluno', 'frustrado', 'tentativas', 'tempo'])
-    return HttpResponse(jsn)
+    colunas = ['aluno', 'frustrado', 'tentativas', 'tempo', 'qtd_toques']
+
+    for j in jogo_fase:
+        toques = j.toques.all().order_by('t')
+        qtd_toques = toques.count()
+        i = 1
+        col_toq = []
+        for t in toques:
+            # criar mais colunas
+            colunas.append('toque_' + i.__str__() + '_x')
+            colunas.append('toque_' + i.__str__() + '_y')
+            colunas.append('toque_' + i.__str__() + '_t')
+            colunas.append('toque_' + i.__str__() + '_acao')
+            col_toq.append(t.x)
+            col_toq.append(t.y)
+            col_toq.append(t.t)
+            col_toq.append(t.acao)
+            i = i + 1
+        jsn.append([j.aluno, j.frustrado, j.tentativas, j.tempo, qtd_toques] + col_toq)
+
+    arff.dump('results/result_fase_'+fase.__str__() +'.arff', jsn, relation="jogo_fase_" + fase.__str__(), names=colunas)
