@@ -68,4 +68,5 @@ def generate_arquivo(fase):
         colunas.append('toque_' + i.__str__() + '_t')
         colunas.append('toque_' + i.__str__() + '_acao')
 
+    print colunas
     arff.dump('results/result_fase_'+fase.__str__() +'.arff', jsn, relation="jogo_fase_" + fase.__str__(), names=colunas)
