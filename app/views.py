@@ -68,11 +68,8 @@ def generate_arquivo(fase):
         for i in range(qtd_toques, qtd_max_toq):
             if qtd_toques == qtd_max_toq:
                 break
-            print "i:" + i.__str__()
-            jsn[ind]= jsn[ind] + [0L, 0L, 0L, 0L]
-        ind = + 1
-
-    print jsn
+            jsn[ind] = jsn[ind] + [0L, 0L, 0L, 0L]
+        ind = ind + 1
 
     for i in range(1, qtd_max_toq+1):
         colunas.append('toque_' + i.__str__() + '_x')
