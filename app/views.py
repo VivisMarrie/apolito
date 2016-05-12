@@ -47,22 +47,25 @@ def generate_arquivo(fase):
     jsn = []
     colunas = ['aluno', 'frustrado', 'tentativas', 'tempo', 'qtd_toques']
 
+    qtd_max_toq = 0
+
     for j in jogo_fase:
         toques = j.toques.all().order_by('t')
         qtd_toques = toques.count()
-        i = 1
+        if qtd_max_toq <= qtd_toques :
+            qtd_max_toq = qtd_toques
         col_toq = []
         for t in toques:
-            # criar mais colunas
-            colunas.append('toque_' + i.__str__() + '_x')
-            colunas.append('toque_' + i.__str__() + '_y')
-            colunas.append('toque_' + i.__str__() + '_t')
-            colunas.append('toque_' + i.__str__() + '_acao')
             col_toq.append(t.x)
             col_toq.append(t.y)
             col_toq.append(t.t)
             col_toq.append(t.acao)
-            i = i + 1
         jsn.append([j.aluno, j.frustrado, j.tentativas, j.tempo, qtd_toques] + col_toq)
+
+    for i in range(1, qtd_max_toq+1):
+        colunas.append('toque_' + i.__str__() + '_x')
+        colunas.append('toque_' + i.__str__() + '_y')
+        colunas.append('toque_' + i.__str__() + '_t')
+        colunas.append('toque_' + i.__str__() + '_acao')
 
     arff.dump('results/result_fase_'+fase.__str__() +'.arff', jsn, relation="jogo_fase_" + fase.__str__(), names=colunas)
