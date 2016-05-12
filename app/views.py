@@ -48,7 +48,6 @@ def generate_arquivo(fase):
     colunas = ['aluno', 'frustrado', 'tentativas', 'tempo', 'qtd_toques']
 
     qtd_max_toq = 0
-
     for j in jogo_fase:
         toques = j.toques.all().order_by('t')
         qtd_toques = toques.count()
@@ -62,11 +61,23 @@ def generate_arquivo(fase):
             col_toq.append(t.acao)
         jsn.append([j.aluno, j.frustrado, j.tentativas, j.tempo, qtd_toques] + col_toq)
 
+    ind = 0
+    for j in jogo_fase:
+        toques = j.toques.all().order_by('t')
+        qtd_toques = toques.count()
+        for i in range(qtd_toques, qtd_max_toq):
+            if qtd_toques == qtd_max_toq:
+                break
+            print "i:" + i.__str__()
+            jsn[ind]= jsn[ind] + [0L, 0L, 0L, 0L]
+        ind = + 1
+
+    print jsn
+
     for i in range(1, qtd_max_toq+1):
         colunas.append('toque_' + i.__str__() + '_x')
         colunas.append('toque_' + i.__str__() + '_y')
         colunas.append('toque_' + i.__str__() + '_t')
         colunas.append('toque_' + i.__str__() + '_acao')
 
-    print colunas
     arff.dump('results/result_fase_'+fase.__str__() +'.arff', jsn, relation="jogo_fase_" + fase.__str__(), names=colunas)
