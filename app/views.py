@@ -38,7 +38,10 @@ def generate_data(request):
     generate_arquivo(4)
     generate_arquivo(5)
     generate_arquivo(6)
-
+    generate_arquivo(7)    
+    generate_arquivo(8)    
+    generate_arquivo(9)
+    
     return HttpResponse("Gerado ARFFs")
 
 
