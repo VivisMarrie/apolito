@@ -30,17 +30,30 @@ def index(request):
             g.toques.add(t)
         return HttpResponse(json_data)
 		
+		
+def gera_dump(aluno, fase):
+    data = serializers.serialize("json", Toques.objects.filter(jogo__aluno=aluno, jogo__fase=fase))
+    data = json.loads(data)
+    for da in data:
+        da["fields"].update({"jogo" : 1})
+
+    data = json.dumps(data)
+    print data
+    out = open("dumps/mymodel"+ aluno.__str__() + fase.__str__() + ".json", "w")
+    out.write(data)
+    out.close()
+    
+		
 def get_aluno(request):
     jogo = Jogo.objects.latest('aluno')
     print jogo.aluno
     
-    collector = NestedObjects(using="default") # database name
-    collector.collect([Jogo.objects.all()])
-
-    objects = list(chain.from_iterable(collector.data))
-    with open("backup_export.json", "w") as f:
-        f.write(serializers.serialize("json", objects))
-    
+    for j in range(1,9):
+        print "aluno", j
+        for i in range(1,10):
+            print "fase", i
+            gera_dump(j,i)
+            
     return HttpResponse(jogo.aluno)
     
 def generate_data(request):
