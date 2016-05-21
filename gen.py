@@ -7,8 +7,7 @@ from django.db.models.deletion import Collector
 from app.models import Jogo
 
 collector = NestedObjects(using="default") # database name
-collector.collect(list(Jogo.objects.all()))
-print collector.data
+collector.collect([Jogo.objects.get(pk=1)])
 
 objects = list(chain.from_iterable(collector.data))
 with open("backup_export.json", "w") as f:
