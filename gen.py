@@ -1,6 +1,6 @@
 from django.core import serializers
 from app import models
-data = serializers.serialize("json", models.Jogo.objects.filter(fase=1,aluno=1))
+data = serializers.serialize("json", models.Toques.objects.filter(jogo__aluno=1, jogo__fase=1))
 out = open("mymodel.json", "w")
 out.write(data)
 out.close()
