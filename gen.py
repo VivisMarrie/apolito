@@ -8,6 +8,7 @@ from app.models import Jogo
 
 collector = NestedObjects(using="default") # database name
 collector.collect(list(Jogo.objects.all()))
+print collector.data
 
 objects = list(chain.from_iterable(collector.data))
 with open("backup_export.json", "w") as f:
