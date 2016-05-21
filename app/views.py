@@ -35,7 +35,7 @@ def get_aluno(request):
     print jogo.aluno
     
     collector = NestedObjects(using="default") # database name
-    collector.collect([Jogo.objects.get(pk=1)])
+    collector.collect([Jogo.objects.all()])
 
     objects = list(chain.from_iterable(collector.data))
     with open("backup_export.json", "w") as f:
