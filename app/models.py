@@ -10,7 +10,7 @@ class Toques(models.Model):
     t = models.IntegerField() # tempo
     acao = models.IntegerField() # qual acao sera executada nesse clique
     def __str__(self):
-        return "x: " + self.x + ", y:" + self.y + ", t:" + self.t
+        return "x: " + self.x.__str__() + ", y:".__str__() + self.y.__str__() + ", t:" + self.t.__str__()
 
 class Jogo(models.Model):
     fase = models.IntegerField()
@@ -20,7 +20,7 @@ class Jogo(models.Model):
     frustrado = models.BooleanField()
     toques = models.ManyToManyField(Toques)
     def __str__(self):
-        return self.fase
+        return "Aluno: " + self.aluno.__str__() + ", Fase: " + self.fase.__str__()
 
     '''{
         "fase": 1,
