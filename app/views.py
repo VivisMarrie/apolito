@@ -38,7 +38,7 @@ def gera_dump(aluno, fase):
         da["fields"].update({"jogo" : jogo})
 
     data = json.dumps(data)
-    print data
+    
     out = open("dumps/mymodel"+ aluno.__str__() + fase.__str__() + ".json", "w")
     out.write(data)
     out.close()
