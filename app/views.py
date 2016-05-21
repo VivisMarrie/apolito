@@ -34,7 +34,7 @@ def get_aluno(request):
     jogo = Jogo.objects.latest('aluno')
     print jogo.aluno
     
-    collector = NestedObjects(using="apolito") # database name
+    collector = NestedObjects(using="default") # database name
     collector.collect([Jogo.objects.get(pk=1)])
 
     objects = list(chain.from_iterable(collector.data))
