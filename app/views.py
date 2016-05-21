@@ -78,7 +78,7 @@ def generate_arquivo(fase):
 
     qtd_max_toq = 0
     for j in jogo_fase:
-        toques = j.toques.all().order_by('t')
+        toques = j.toques_set.all().order_by('t')
         qtd_toques = toques.count()
         if qtd_max_toq <= qtd_toques :
             qtd_max_toq = qtd_toques
@@ -92,7 +92,7 @@ def generate_arquivo(fase):
 
     ind = 0
     for j in jogo_fase:
-        toques = j.toques.all().order_by('t')
+        toques = j.toques_set.all().order_by('t')
         qtd_toques = toques.count()
         for i in range(qtd_toques, qtd_max_toq):
             if qtd_toques == qtd_max_toq:
