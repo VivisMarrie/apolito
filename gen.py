@@ -1,7 +1,7 @@
 from itertools import chain      
 
 from django.core import serializers
-from django.contrib.admin.util import NestedObjects
+from django.contrib.admin.utils import NestedObjects
 from django.db.models.deletion import Collector
 
 from app.models import Jogo
