@@ -35,7 +35,7 @@ def gera_dump(aluno, fase):
     data = serializers.serialize("json", Toques.objects.filter(jogo__aluno=aluno, jogo__fase=fase))
     data = json.loads(data)
     for da in data:
-        da["fields"].update({"jogo" : 1})
+        da["fields"].update({"jogo" : jogo})
 
     data = json.dumps(data)
     print data
@@ -47,12 +47,13 @@ def gera_dump(aluno, fase):
 def get_aluno(request):
     jogo = Jogo.objects.latest('aluno')
     print jogo.aluno
-    
+    jogo = 1
     for j in range(1,9):
         print "aluno", j
         for i in range(1,10):
             print "fase", i
-            gera_dump(j,i)
+            gera_dump(j,i, jogo)
+            jogo = jogo + 1
             
     return HttpResponse(jogo.aluno)
     
