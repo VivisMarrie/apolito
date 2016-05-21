@@ -1,6 +1,15 @@
+import json
 from django.core import serializers
 from app import models
+
 data = serializers.serialize("json", models.Toques.objects.filter(jogo__aluno=1, jogo__fase=1))
+data = json.loads(data)
+#resolve aqui
+for da in data:
+    da["fields"].update({"jogo" : 1})
+
+data = json.dumps(data)
+print data
 out = open("mymodel.json", "w")
 out.write(data)
 out.close()
