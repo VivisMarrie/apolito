@@ -31,11 +31,13 @@ def index(request):
         return HttpResponse(json_data)
 		
 		
-def gera_dump(aluno, fase, jogo):
-    data = serializers.serialize("json", Toques.objects.filter(jogo__aluno=aluno, jogo__fase=fase))
+def gera_dump(aluno, fase):
+    toques = Toques.objects.filter(jogo__aluno=aluno, jogo__fase=fase)
+    data = serializers.serialize("json", toques)
     data = json.loads(data)
+    j = Jogo.objects.filter(toques__in:toques).distinct()
     for da in data:
-        da["fields"].update({"jogo" : jogo})
+        da["fields"].update({"jogo" : j[0].id})
 
     data = json.dumps(data)
     
@@ -47,13 +49,11 @@ def gera_dump(aluno, fase, jogo):
 def get_aluno(request):
     jogo = Jogo.objects.latest('aluno')
     print jogo.aluno
-    jogo = 1
     for j in range(1,9):
         print "aluno", j
         for i in range(1,10):
             print "fase", i
-            gera_dump(j,i, jogo)
-            jogo = jogo + 1
+            gera_dump(j,i)
             
     return HttpResponse(jogo.aluno)
     
