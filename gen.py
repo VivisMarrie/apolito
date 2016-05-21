@@ -2,17 +2,21 @@ import json
 from django.core import serializers
 from app import models
 
-data = serializers.serialize("json", models.Toques.objects.filter(jogo__aluno=1, jogo__fase=1))
-data = json.loads(data)
-#resolve aqui
-for da in data:
-    da["fields"].update({"jogo" : 1})
+def gera_dump(aluno, fase):
+    data = serializers.serialize("json", models.Toques.objects.filter(jogo__aluno=aluno, jogo__fase=fase))
+    data = json.loads(data)
+    for da in data:
+        da["fields"].update({"jogo" : 1})
 
-data = json.dumps(data)
-print data
-out = open("mymodel.json", "w")
-out.write(data)
-out.close()
+    data = json.dumps(data)
+    out = open("dumps/mymodel"+ aluno.__str__() + fase.__str__() + ".json", "w")
+    out.write(data)
+    out.close()
+
+for j in range(1,9):
+    for i in range(1,10):
+        gera_dump(j,i)
+
 
 '''from itertools import chain      
 
