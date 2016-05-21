@@ -298154,3 +298154,73 @@ ValueError: The view app.views.index didn't return an HttpResponse object. It re
 [19/May/2016 21:43:09] "GET / HTTP/1.1" 500 49432
 [19/May/2016 21:43:17] "GET /generate_data HTTP/1.1" 301 0
 [19/May/2016 21:43:21] "GET /generate_data/ HTTP/1.1" 200 12
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 158, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.views.index didn't return an HttpResponse object. It returned None instead.
+[20/May/2016 12:44:59] "GET / HTTP/1.1" 500 49143
+Not Found: /robots.txt
+[20/May/2016 12:44:59] "GET /robots.txt HTTP/1.1" 404 2464
+Not Found: /sitemap.xml
+[20/May/2016 12:45:00] "GET /sitemap.xml HTTP/1.1" 404 2467
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 158, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view app.views.index didn't return an HttpResponse object. It returned None instead.
+[20/May/2016 14:51:34] "GET / HTTP/1.1" 500 48996
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 86, in run
+    self.finish_response()
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 128, in finish_response
+    self.write(data)
+  File "/usr/lib/python2.7/wsgiref/handlers.py", line 217, in write
+    self._write(data)
+  File "/usr/lib/python2.7/socket.py", line 324, in write
+    self.flush()
+  File "/usr/lib/python2.7/socket.py", line 303, in flush
+    self._sock.sendall(view[write_offset:write_offset+buffer_size])
+error: [Errno 104] Connection reset by peer
+[20/May/2016 14:51:34] "GET / HTTP/1.1" 500 59
+- Broken pipe from ('106.186.31.135', 5800)
+[20/May/2016 14:51:34] code 400, message Bad request syntax ('\x16\x03\x01\x00\x7f\x01\x00\x00{\x03\x03\xcd#y"\x89\xda\x19\x04\xcem\xc1\xe3_\xce\xa2\xaa\ry\xd8P#e\xaba\x1b\x16\x82\xed\tn\xa5\xc5\x00\x00\x1c\xc0/\xc0+\xc00\xc0,\xc0\x13\xc0\t\xc0\x14\xc0')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+Not Found: /http:/clientapi.ipip.net/echo.php
+[20/May/2016 14:51:34] "GET http://clientapi.ipip.net/echo.php?info=20160521015134 HTTP/1.1" 404 1724
+[20/May/2016 14:51:35] code 400, message Bad request syntax ('SSH-2.0-LYGhost_1.2.7-20100630')
+[20/May/2016 14:51:35] "SSH-2.0-LYGhost_1.2.7-20100630" 400 -
+[20/May/2016 14:51:38] code 400, message Bad request syntax ('\x05\x02\x00\x02')
+[20/May/2016 14:51:38] " " 400 -
+[20/May/2016 14:51:42] code 400, message Bad request syntax ('\x00\x9c\x00\x01\x1a+<M\x00\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00')
+[20/May/2016 14:51:42] 
+[20/May/2016 14:51:48] code 400, message Bad request syntax ('\x04\x01\x1f\x00\x00\x00\x00\x00\x00')
+[20/May/2016 14:51:48] "      " 400 -
+[20/May/2016 18:34:07] "GET /generate_data/ HTTP/1.1" 200 12
+Not Found: /favicon.ico
+[20/May/2016 18:34:07] "GET /favicon.ico HTTP/1.1" 404 2467
+[20/May/2016 20:48:06] "GET /get_aluno HTTP/1.1" 301 0
+[20/May/2016 20:48:07] "GET /get_aluno/ HTTP/1.1" 200 1
+Not Found: /favicon.ico
+[20/May/2016 20:48:07] "GET /favicon.ico HTTP/1.1" 404 2467
+[20/May/2016 20:53:08] "GET /get_aluno/ HTTP/1.1" 200 1
+[20/May/2016 21:01:24] "GET /get_aluno/ HTTP/1.1" 200 1
+[20/May/2016 22:29:56] "GET /get_aluno/ HTTP/1.1" 200 1
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 19, 2016 - 21:43:02
+Django version 1.9.6, using settings 'apolito.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+9
+8
+8
+8
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 20, 2016 - 23:16:57
+Django version 1.9.6, using settings 'apolito.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
