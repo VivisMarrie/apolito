@@ -31,7 +31,7 @@ def index(request):
         return HttpResponse(json_data)
 		
 		
-def gera_dump(aluno, fase):
+def gera_dump(aluno, fase, jogo):
     data = serializers.serialize("json", Toques.objects.filter(jogo__aluno=aluno, jogo__fase=fase))
     data = json.loads(data)
     for da in data:
