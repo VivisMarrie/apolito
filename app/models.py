@@ -20,7 +20,7 @@ class Jogo(models.Model):
     frustrado = models.BooleanField()
     toques = models.ManyToManyField(Toques)
     def __str__(self):
-        return "Aluno: " + self.aluno.__str__() + ", Fase: " + self.fase.__str__()
+        return "Id:" +self.id.__str__() + " Aluno: " + self.aluno.__str__() + ", Fase: " + self.fase.__str__()
 
     '''{
         "fase": 1,
