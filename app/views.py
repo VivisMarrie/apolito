@@ -35,7 +35,7 @@ def gera_dump(aluno, fase):
     toques = Toques.objects.filter(jogo__aluno=aluno, jogo__fase=fase)
     data = serializers.serialize("json", toques)
     data = json.loads(data)
-    j = Jogo.objects.filter(toques__in:toques).distinct()
+    j = Jogo.objects.filter(toques__in=toques).distinct()
     for da in data:
         da["fields"].update({"jogo" : j[0].id})
 
