@@ -10,5 +10,5 @@ collector = NestedObjects(using="apolito") # database name
 collector.collect(Jogo.objects.all())
 
 objects = list(chain.from_iterable(collector.data))
-with f as open("backup_export.json", "w"):
+with open("backup_export.json", "w") as f:
     f.write(serializers.serialize("json", objects))
