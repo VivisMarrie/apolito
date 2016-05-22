@@ -26,8 +26,8 @@ def index(request):
             t.y = i["y"]
             t.t = i["t"]
             t.acao = i["acao"]
+            t.jogo = g
             t.save()
-            g.toques.add(t)
         return HttpResponse(json_data)
 		
 		
