@@ -52,7 +52,9 @@ def generate_data(request):
 def generate_arquivo(fase):
     jogo_fase = Jogo.objects.all().filter(fase=fase)
     jsn = []
-    colunas = ['aluno', 'frustrado', 'tentativas', 'tempo', 'qtd_toques']
+    colunas = ['aluno', 'frustrado','qtd_toques', 'tentativas', 'tempo', 'med_toques_segundo']
+
+    colunas.extend(['qtd_toque_tipo_' + x.__str__() for x in range(13)])
 
     qtd_max_toq = 0
     for j in jogo_fase:
@@ -61,12 +63,17 @@ def generate_arquivo(fase):
         if qtd_max_toq <= qtd_toques :
             qtd_max_toq = qtd_toques
         col_toq = []
+
+        qtd_toque_tipo = [0] * 13
+        print qtd_toque_tipo
         for t in toques:
             col_toq.append(t.x)
             col_toq.append(t.y)
             col_toq.append(t.t)
             col_toq.append(t.acao)
-        jsn.append([j.aluno, j.frustrado, j.tentativas, j.tempo, qtd_toques] + col_toq)
+            qtd_toque_tipo[t.acao] = qtd_toque_tipo[t.acao] + 1
+
+        jsn.append([j.aluno, j.frustrado, qtd_toques, j.tentativas, j.tempo, qtd_toques / j.tempo, ] + qtd_toque_tipo + col_toq)
 
     ind = 0
     for j in jogo_fase:
