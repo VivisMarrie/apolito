@@ -45,7 +45,7 @@ def generate_data(request):
     generate_arquivo(7)    
     generate_arquivo(8)    
     generate_arquivo(9)
-    
+    print "gerado ARFFs"
     return HttpResponse("Gerado ARFFs")
 
 
@@ -65,7 +65,6 @@ def generate_arquivo(fase):
         col_toq = []
 
         qtd_toque_tipo = [0] * 13
-        print qtd_toque_tipo
         for t in toques:
             col_toq.append(t.x)
             col_toq.append(t.y)
@@ -73,7 +72,11 @@ def generate_arquivo(fase):
             col_toq.append(t.acao)
             qtd_toque_tipo[t.acao] = qtd_toque_tipo[t.acao] + 1
 
-        jsn.append([j.aluno, j.frustrado, qtd_toques, j.tentativas, j.tempo, qtd_toques / j.tempo, ] + qtd_toque_tipo + col_toq)
+        med_toques_segundo = 0
+        if float((j.tempo/1000)%60) <> 0:
+            med_toques_segundo = qtd_toques / float((j.tempo/1000)%60)
+
+        jsn.append([j.aluno, j.frustrado, qtd_toques, j.tentativas, j.tempo, med_toques_segundo] + qtd_toque_tipo + col_toq)
 
     ind = 0
     for j in jogo_fase:
