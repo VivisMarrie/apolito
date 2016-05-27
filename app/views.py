@@ -73,8 +73,8 @@ def generate_arquivo(fase):
             qtd_toque_tipo[t.acao] = qtd_toque_tipo[t.acao] + 1
 
         med_toques_segundo = 0
-        if float((j.tempo/1000)%60) <> 0:
-            med_toques_segundo = qtd_toques / float((j.tempo/1000)%60)
+        if float(j.tempo/1000) <> 0:
+            med_toques_segundo = qtd_toques / float(j.tempo/1000)
 
         jsn.append([j.aluno, j.frustrado, qtd_toques, j.tentativas, j.tempo, med_toques_segundo] + qtd_toque_tipo + col_toq)
 
