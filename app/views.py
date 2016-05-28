@@ -11,7 +11,6 @@ from django.db.models.deletion import Collector
 @csrf_exempt
 def index(request):
     if request.method == 'POST':
-        print request.body
         json_data = json.loads(request.body.decode("utf-8"))
         g = Jogo()
         g.fase = json_data["fase"]
